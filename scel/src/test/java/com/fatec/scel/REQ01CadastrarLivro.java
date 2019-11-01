@@ -11,6 +11,8 @@ import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.junit4.SpringRunner;
+
+
 import com.fatec.scel.model.Livro;
 import com.fatec.scel.model.LivroRepository;
 
@@ -47,17 +49,48 @@ public class REQ01CadastrarLivro {
 		// then:
 		assertTrue(violations.isEmpty());
 	}
+	
 
 	@Test
 	public void CT03DeveDetectarTituloInvalido() {
 		validatorFactory = Validation.buildDefaultValidatorFactory();
 		validator = validatorFactory.getValidator();
 		// dado que o titulo do livro esta invalido
-		Livro livro = new Livro("3333", "", "Delamaro");
+		Livro livro = new Livro("5555", "", "Delamaro");
 		// when:
 		Set<ConstraintViolation<Livro>> violations = validator.validate(livro);
 		// then:
 		assertEquals(violations.size(), 1);
 		assertEquals("O titulo deve ser preenchido", violations.iterator().next().getMessage());
 	}
+	
+	@Test
+	public void CT03DeveDetectarAutorInvalido() {
+		validatorFactory = Validation.buildDefaultValidatorFactory();
+		validator = validatorFactory.getValidator(); 
+		// dado que o titulo do livro esta invalido
+		Livro livro = new Livro("555", "Sei la", "");
+		// when:
+		Set<ConstraintViolation<Livro>> violations = validator.validate(livro);
+		// then:
+		assertEquals(violations.size(), 1);
+		assertEquals("Autor deve ter entre 1 e 50 caracteres", violations.iterator().next().getMessage());
+	}
+	
+	
+	@Test
+	public void CT03DeveDetectarSet() {
+		validatorFactory = Validation.buildDefaultValidatorFactory();
+		validator = validatorFactory.getValidator(); 
+		// dado que o titulo do livro esta invalido
+		Livro livro = new Livro("555", "Sei la", "");
+
+		livro.setAutor("Autor");
+		livro.setIsbn("111111");
+		livro.setTitulo("Meu titulo");
+		livro.setId(null);
+	}
+	
+	
+	
 }

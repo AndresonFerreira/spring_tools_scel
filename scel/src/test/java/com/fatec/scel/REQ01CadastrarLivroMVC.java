@@ -40,4 +40,50 @@ public class REQ01CadastrarLivroMVC {
 		ModelResultMatchers model = MockMvcResultMatchers.model();
 		resultActions.andExpect(model.attributeExists("livro"));
 	}
+	
+	//consulta
+	@Test
+	public void status0consulta() throws Exception {
+		ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders.get("/livros/consulta"));
+		resultActions.andExpect(MockMvcResultMatchers.status().isOk());
+		resultActions.andExpect(MockMvcResultMatchers.status().is(200));
+	}
+
+	@Test
+	public void verificaView0consulta() throws Exception {
+		ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders.get("/livros/consulta"));
+		ViewResultMatchers view = MockMvcResultMatchers.view();
+		resultActions.andExpect(view.name("ConsultarLivros"));
+	}
+
+	@Test // verifica o model
+	public void verificaModel0consulta() throws Exception {
+		ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders.get("/livros/consulta"));
+		ModelResultMatchers model = MockMvcResultMatchers.model();
+		resultActions.andExpect(model.attributeExists("livro"));
+	}
+	
+	
+	
+//save
+	@Test
+	public void status0save() throws Exception {
+		ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders.get("/livros/save"));
+		resultActions.andExpect(MockMvcResultMatchers.status().isOk());
+		resultActions.andExpect(MockMvcResultMatchers.status().is(200));
+	}
+
+	@Test
+	public void verificaView0save() throws Exception {
+		ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders.get("/livros/save"));
+		ViewResultMatchers view = MockMvcResultMatchers.view();
+		resultActions.andExpect(view.name("CadastrarLivro"));
+	}
+
+	@Test // verifica o model
+	public void verificaModel0save() throws Exception {
+		ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders.get("/livros/save"));
+		ModelResultMatchers model = MockMvcResultMatchers.model();
+		resultActions.andExpect(model.attributeExists("livro"));
+	}
 }
