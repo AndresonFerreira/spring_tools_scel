@@ -38,7 +38,7 @@ public class REQ01CadastrarLivro {
 		assertEquals(1, repository.count());
 	}
 
-	@Test
+	@Test 
 	public void CT02CadastrarLivroComSucesso_dados_validos() {
 		validatorFactory = Validation.buildDefaultValidatorFactory();
 		validator = validatorFactory.getValidator();
@@ -53,10 +53,10 @@ public class REQ01CadastrarLivro {
 
 	@Test
 	public void CT03DeveDetectarTituloInvalido() {
-		validatorFactory = Validation.buildDefaultValidatorFactory();
+		validatorFactory = Validation.buildDefaultValidatorFactory(); 
 		validator = validatorFactory.getValidator();
 		// dado que o titulo do livro esta invalido
-		Livro livro = new Livro("5555", "", "Delamaro");
+		Livro livro = new Livro("5555", "", "Delamaro"); 
 		// when:
 		Set<ConstraintViolation<Livro>> violations = validator.validate(livro);
 		// then:
