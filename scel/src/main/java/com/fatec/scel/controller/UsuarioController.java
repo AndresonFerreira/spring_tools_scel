@@ -27,7 +27,7 @@ public class UsuarioController {
 		modelAndView.addObject("usuarios", repository.findAll());
 		return modelAndView;
 	}
-
+ 
 	@GetMapping("/cadastrar")
 	public ModelAndView cadastraUsuario(Usuario usuario) {
 		ModelAndView mv = new ModelAndView("CadastrarUsuario");

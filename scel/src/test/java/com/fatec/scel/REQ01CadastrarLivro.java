@@ -69,7 +69,7 @@ public class REQ01CadastrarLivro {
 		validatorFactory = Validation.buildDefaultValidatorFactory();
 		validator = validatorFactory.getValidator(); 
 		// dado que o titulo do livro esta invalido
-		Livro livro = new Livro("555", "Sei la", "");
+		Livro livro = new Livro("555", "Sei la", ""); 
 		// when:
 		Set<ConstraintViolation<Livro>> violations = validator.validate(livro);
 		// then:
